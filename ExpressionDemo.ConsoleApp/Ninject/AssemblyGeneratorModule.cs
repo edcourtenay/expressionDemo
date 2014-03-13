@@ -11,12 +11,4 @@ namespace ExpressionDemo.ConsoleApp.Ninject
             Bind<IConfiguration>().To<EuropeanConfiguration>();
         }
     }
-
-    internal class RpnCalculatorModule : NinjectModule
-    {
-        public override void Load()
-        {
-            Bind<IApplication>().To<RpnCalculatorApplication>();
-        }
-    }
 }

@@ -66,6 +66,7 @@
     <Compile Include="Ninject\CountingWithGeneratedAssembly.cs" />
     <Compile Include="Ninject\FilterWithCompiledFilterModule.cs" />
     <Compile Include="Ninject\FilterWithGeneratedAssemblyModule.cs" />
+    <Compile Include="Ninject\RpnCalculatorModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RpnCalculatorApplication.cs" />
