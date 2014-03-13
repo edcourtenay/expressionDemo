@@ -7,7 +7,18 @@ namespace ExpressionDemo.ConsoleApp.Configuration
     {
         public override IEnumerable<string> CountryCodes
         {
-            get { return new[] { "gb", "fr", "de" }; }
+            get
+            {
+                return new[]
+                {
+                    "al", "ad", "at", "by", "be", "ba", "bg", "hr", "cy",
+                    "cz", "dk", "ee", "fo", "fi", "fr", "de", "gi", "gr",
+                    "hu", "is", "ie", "it", "lv", "li", "lt", "lu", "mk",
+                    "mt", "md", "mc", "nl", "no", "pl", "pt", "ro", "ru",
+                    "sm", "rs", "sk", "si", "es", "se", "ch", "ua", "gb",
+                    "va", "im", "me"
+                };
+            }
         }
 
         public override IEnumerable<Tuple<string, string>> Features

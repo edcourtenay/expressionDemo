@@ -10,7 +10,7 @@ namespace ExpressionDemo.CsvDataSource
     {
         public IEnumerable<IGeoDataLocation> Locations()
         {
-            using (Stream stream = new FileStream(@"C:\Data\allCountries\allCountries.txt", FileMode.Open))
+            using (Stream stream = new FileStream(@"C:\Data\cities15000.txt", FileMode.Open))
             using (var reader = new StreamReader(stream)) {
                 string line;
                 while ((line = reader.ReadLine()) != null)
