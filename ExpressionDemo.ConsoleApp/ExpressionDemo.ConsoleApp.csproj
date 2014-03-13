@@ -57,9 +57,10 @@
     <Compile Include="Configuration\EuropeanConfiguration.cs" />
     <Compile Include="Extensions\ExpressionExtensions.cs" />
     <Compile Include="FilterApplication.cs" />
-    <Compile Include="Filters\CompiledFilter.cs" />
-    <Compile Include="Filters\CompiledMethodFilter.cs" />
+    <Compile Include="Filters\ExpressionFuncFilter.cs" />
+    <Compile Include="Filters\ExpressionFilter.cs" />
     <Compile Include="Filters\FilterImplementationBridge.cs" />
+    <Compile Include="Filters\FuncFilter.cs" />
     <Compile Include="Filters\StandardFilter.cs" />
     <Compile Include="Ninject\AssemblyGeneratorModule.cs" />
     <Compile Include="Ninject\CountingApplicationModule.cs" />

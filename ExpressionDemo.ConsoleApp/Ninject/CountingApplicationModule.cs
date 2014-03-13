@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using ExpressionDemo.Common;
 using ExpressionDemo.ConsoleApp.Configuration;
 using ExpressionDemo.ConsoleApp.Filters;
@@ -14,11 +13,12 @@ namespace ExpressionDemo.ConsoleApp.Ninject
             Bind<IApplication>().To<CountingApplication>();
 
             Bind<IGeoDataSource>().To<GeoDataSource>();
-            Bind<IConfiguration>().To<EuropeanConfiguration>();
+            Bind<IConfiguration>().To<CapitalCitiesConfiguration>();
 
             Bind<IFilter>().To<StandardFilter>();
-            //Bind<IFilter>().To<CompiledFilter>();
-            //Bind<IFilter>().To<CompiledMethodFilter>();
+            //Bind<IFilter>().To<FuncFilter>();
+            //Bind<IFilter>().To<ExpressionFuncFilter>();
+            //Bind<IFilter>().To<ExpressionFilter>();
             //Bind<IFilter>()
             //    .To<FilterImplementationBridge>()
             //    .WithConstructorArgument("filterImplementation", Activator.CreateInstance(Type.GetType("TestType, TestAssembly")));

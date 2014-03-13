@@ -24,7 +24,7 @@ namespace ExpressionDemo.ConsoleApp
             Func<IGeoDataLocation, bool> filterFunction = _filter.GetFilterFunction();
             _dataSource.Locations()
                 .Where(filterFunction)
-                .ForEach(location => Console.WriteLine((string) location.Name) );
+                .ForEach(location => Console.WriteLine("{1}: {0}", location.Name, location.CountryCode) );
         }
     }
 }

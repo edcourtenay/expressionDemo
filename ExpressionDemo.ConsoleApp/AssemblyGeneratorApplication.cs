@@ -9,9 +9,9 @@ namespace ExpressionDemo.ConsoleApp
     internal class AssemblyGeneratorApplication : IApplication
     {
         private const string ASSEMBLY_FILENAME = "TestAssembly.dll";
-        private readonly CompiledMethodFilter _filter;
+        private readonly ExpressionFilter _filter;
 
-        public AssemblyGeneratorApplication(CompiledMethodFilter filter)
+        public AssemblyGeneratorApplication(ExpressionFilter filter)
         {
             if (filter == null) throw new ArgumentNullException("filter");
 

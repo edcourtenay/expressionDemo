@@ -8,13 +8,13 @@ using ExpressionDemo.ConsoleApp.Extensions;
 
 namespace ExpressionDemo.ConsoleApp.Filters
 {
-    public class CompiledMethodFilter : IFilter
+    public class ExpressionFilter : IFilter
     {
         private readonly IConfiguration _configuration;
         private readonly Lazy<Expression<Func<IGeoDataLocation, bool>>> _expression;
         private readonly Lazy<Func<IGeoDataLocation, bool>> _function;
 
-        public CompiledMethodFilter(IConfiguration configuration)
+        public ExpressionFilter(IConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException("configuration");

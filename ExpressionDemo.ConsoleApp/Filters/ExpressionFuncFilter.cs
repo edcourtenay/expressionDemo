@@ -7,11 +7,11 @@ using LinqKit;
 
 namespace ExpressionDemo.ConsoleApp.Filters
 {
-    public class CompiledFilter : IFilter
+    public class ExpressionFuncFilter : IFilter
     {
         private readonly IConfiguration _configuration;
 
-        public CompiledFilter(IConfiguration configuration)
+        public ExpressionFuncFilter(IConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException("configuration");

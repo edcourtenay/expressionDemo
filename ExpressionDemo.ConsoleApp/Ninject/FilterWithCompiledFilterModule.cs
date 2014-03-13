@@ -12,7 +12,7 @@ namespace ExpressionDemo.ConsoleApp.Ninject
         {
             Bind<IApplication>().To<FilterApplication>();
             Bind<IGeoDataSource>().To<GeoDataSource>();
-            Bind<IFilter>().To<CompiledMethodFilter>();
+            Bind<IFilter>().To<ExpressionFilter>();
             Bind<IConfiguration>().To<CapitalCitiesConfiguration>();
         }
     }
