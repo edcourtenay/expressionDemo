@@ -1,5 +1,6 @@
 using System;
 using ExpressionDemo.Common;
+using ExpressionDemo.ConsoleApp.Applications;
 using ExpressionDemo.ConsoleApp.Filters;
 using ExpressionDemo.CsvDataSource;
 using Ninject.Modules;

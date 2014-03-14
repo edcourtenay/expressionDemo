@@ -1,4 +1,5 @@
 using ExpressionDemo.Common;
+using ExpressionDemo.ConsoleApp.Applications;
 using Ninject.Modules;
 
 namespace ExpressionDemo.ConsoleApp.Ninject

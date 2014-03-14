@@ -4,7 +4,7 @@ using System.Reflection.Emit;
 using ExpressionDemo.Common;
 using ExpressionDemo.ConsoleApp.Filters;
 
-namespace ExpressionDemo.ConsoleApp
+namespace ExpressionDemo.ConsoleApp.Applications
 {
     internal class AssemblyGeneratorApplication : IApplication
     {

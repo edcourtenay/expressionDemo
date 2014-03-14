@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ExpressionDemo.Common;
 
-namespace ExpressionDemo.ConsoleApp.Configuration
+namespace ExpressionDemo.ConsoleApp.Configurations
 {
     public abstract class BaseConfiguration : IConfiguration
     {

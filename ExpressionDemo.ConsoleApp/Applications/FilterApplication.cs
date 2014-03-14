@@ -3,7 +3,7 @@ using System.Linq;
 using ExpressionDemo.Common;
 using LinqKit;
 
-namespace ExpressionDemo.ConsoleApp
+namespace ExpressionDemo.ConsoleApp.Applications
 {
     internal class FilterApplication : IApplication
     {

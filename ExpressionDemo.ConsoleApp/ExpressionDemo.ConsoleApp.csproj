@@ -50,13 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyGeneratorApplication.cs" />
-    <Compile Include="Configuration\BaseConfiguration.cs" />
-    <Compile Include="Configuration\CapitalCitiesConfiguration.cs" />
-    <Compile Include="CountingApplication.cs" />
-    <Compile Include="Configuration\EuropeanConfiguration.cs" />
+    <Compile Include="Applications\AssemblyGeneratorApplication.cs" />
+    <Compile Include="Configurations\BaseConfiguration.cs" />
+    <Compile Include="Configurations\CapitalCitiesConfiguration.cs" />
+    <Compile Include="Applications\CountingApplication.cs" />
+    <Compile Include="Configurations\EuropeanConfiguration.cs" />
     <Compile Include="Extensions\ExpressionExtensions.cs" />
-    <Compile Include="FilterApplication.cs" />
+    <Compile Include="Applications\FilterApplication.cs" />
     <Compile Include="Filters\ExpressionFuncFilter.cs" />
     <Compile Include="Filters\ExpressionFilter.cs" />
     <Compile Include="Filters\FilterImplementationBridge.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Ninject\RpnCalculatorModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RpnCalculatorApplication.cs" />
+    <Compile Include="Applications\RpnCalculatorApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

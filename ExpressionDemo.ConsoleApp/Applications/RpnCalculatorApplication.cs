@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ExpressionDemo.Common;
 
-namespace ExpressionDemo.ConsoleApp
+namespace ExpressionDemo.ConsoleApp.Applications
 {
     internal class RpnCalculatorApplication : IApplication
     {

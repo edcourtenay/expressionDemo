@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ExpressionDemo.ConsoleApp.Configuration
+namespace ExpressionDemo.ConsoleApp.Configurations
 {
     public class EuropeanConfiguration : BaseConfiguration
     {
