@@ -10,6 +10,9 @@ namespace ExpressionDemo.ConsoleApp
         public void Run()
         {
             string formula = "512 12 4 / root 4 - 2 ^";
+            //string formula = "512 1 12 4 / / ^ 4 - 2 ^"; 
+            //string formula = "3 4 5 6 - + *";
+            
             string[] tokens = formula.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
 
             Func<string, Expression, Expression> unaryMath = (s, x) =>
@@ -70,8 +73,23 @@ namespace ExpressionDemo.ConsoleApp
             Expression expression = stack.Pop();
 
             Console.WriteLine(expression.ToString());
+            
+            Dump(expression);
+            
             Expression<Func<double>> lambda = Expression.Lambda<Func<double>>(expression);
-            Console.WriteLine(lambda.Compile().Invoke());
+            Console.WriteLine("\n= {0}", lambda.Compile().Invoke());
+        }
+
+        public void Dump(Expression expression, int depth = 0)
+        {
+            Console.WriteLine("{0}{1}", new String(' ', depth * 2), expression.NodeType != ExpressionType.Constant ? expression.NodeType.ToString() : ((ConstantExpression) expression).Value.ToString());
+
+            var binaryExpression = expression as BinaryExpression;
+            if (binaryExpression != null)
+            {
+                Dump(binaryExpression.Left, depth + 1);
+                Dump(binaryExpression.Right, depth + 1);
+            }
         }
     }
 }
