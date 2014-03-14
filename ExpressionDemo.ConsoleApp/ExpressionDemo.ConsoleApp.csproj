@@ -61,7 +61,7 @@
     <Compile Include="Filters\ExpressionFilter.cs" />
     <Compile Include="Filters\FilterImplementationBridge.cs" />
     <Compile Include="Filters\FuncFilter.cs" />
-    <Compile Include="Filters\StandardFilter.cs" />
+    <Compile Include="Filters\SimpleFilter.cs" />
     <Compile Include="Ninject\AssemblyGeneratorModule.cs" />
     <Compile Include="Ninject\CountingApplicationModule.cs" />
     <Compile Include="Ninject\CountingWithGeneratedAssembly.cs" />

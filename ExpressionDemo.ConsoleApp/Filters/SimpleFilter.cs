@@ -4,11 +4,11 @@ using ExpressionDemo.Common;
 
 namespace ExpressionDemo.ConsoleApp.Filters
 {
-    public class StandardFilter : IFilter
+    public class SimpleFilter : IFilter
     {
         private readonly IConfiguration _configuration;
 
-        public StandardFilter(IConfiguration configuration)
+        public SimpleFilter(IConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException("configuration");
