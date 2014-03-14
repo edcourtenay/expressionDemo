@@ -13,7 +13,7 @@ namespace ExpressionDemo.ConsoleApp.Ninject
             Bind<IApplication>().To<CountingApplication>();
 
             Bind<IGeoDataSource>().To<GeoDataSource>();
-            Bind<IConfiguration>().To<CapitalCitiesConfiguration>();
+            Bind<IConfiguration>().To<EuropeanConfiguration>();
 
             Bind<IFilter>().To<StandardFilter>();
             //Bind<IFilter>().To<FuncFilter>();
