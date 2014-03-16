@@ -11,7 +11,7 @@ namespace ExpressionDemo.CsvDataSource
         public IEnumerable<IGeoDataLocation> Locations()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
-            string resourceName = "ExpressionDemo.CsvDataSource.Embedded.cities15000.txt";
+            const string resourceName = "ExpressionDemo.CsvDataSource.Embedded.cities15000.txt";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             foreach (var geoDataLocation in ReadLocationsFromStream(stream))
