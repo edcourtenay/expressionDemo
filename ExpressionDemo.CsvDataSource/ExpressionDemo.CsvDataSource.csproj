@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvDataSourceParser.cs" />
+    <Compile Include="GeoDataSourceBase.cs" />
     <Compile Include="GeoDataLocation.cs" />
-    <Compile Include="GeoDataSource.cs" />
+    <Compile Include="EmbeddedGeoDataSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +51,9 @@
       <Project>{98753609-429B-4AA2-BAFB-BB6B8F7A66AD}</Project>
       <Name>ExpressionDemo.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Embedded\cities15000.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
