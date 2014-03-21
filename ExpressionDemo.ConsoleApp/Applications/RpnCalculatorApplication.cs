@@ -9,7 +9,9 @@ namespace ExpressionDemo.ConsoleApp.Applications
     {
         public void Run()
         {
-            string formula = "512 12 4 / root 4 - 2 ^";
+            string formula = "2 2 +";
+            
+            //string formula = "512 12 4 / root 4 - 2 ^";
             //string formula = "512 1 12 4 / / ^ 4 - 2 ^"; 
             //string formula = "3 4 5 6 - + *";
             
@@ -73,7 +75,7 @@ namespace ExpressionDemo.ConsoleApp.Applications
             Expression expression = stack.Pop();
 
             Console.WriteLine(expression.ToString());
-            
+
             Dump(expression);
             
             Expression<Func<double>> lambda = Expression.Lambda<Func<double>>(expression);
