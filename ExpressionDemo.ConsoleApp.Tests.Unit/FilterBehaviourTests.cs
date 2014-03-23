@@ -58,24 +58,6 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 // ReSharper restore ClassNeverInstantiated.Local
 
         [Test]
-        [TestCaseSource("Filters")]
-        public void Wibble(Type filterType)
-        {
-            var kernel = new MoqMockingKernel();
-            kernel.Bind<IConfiguration>().To<FakeConfiguration>();
-
-            var filter = (IFilter) kernel.Get(filterType);
-            var geoDataLocation = Mock.Of<IGeoDataLocation>(l => l.CountryCode == "gb" &&
-                l.FeatureClass == "p" && l.FeatureCode == "ppl" &&
-                l.Population == 200000L &&
-                l.ModificationDate == new DateTime(2012, 1, 1));
-
-            filter.GetFilterFunction().Invoke(geoDataLocation).Should().BeTrue();
-
-            Mock.Get(geoDataLocation).VerifyGet(location => location.ModificationDate, Times.Never());
-        }
-
-        [Test]
         [TestCaseSource("FiltersAndConfigurations")]
         public void AllFiltersShouldExecuteWithAllConfigurations(Type filterType, Type configurationType)
         {
