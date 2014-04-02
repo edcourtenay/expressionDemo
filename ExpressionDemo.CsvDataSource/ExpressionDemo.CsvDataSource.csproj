@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CsvDataSourceParser.cs" />
+    <Compile Include="FileGeoDataSource.cs" />
     <Compile Include="GeoDataSourceBase.cs" />
     <Compile Include="GeoDataLocation.cs" />
     <Compile Include="EmbeddedGeoDataSource.cs" />

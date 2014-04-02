@@ -11,8 +11,6 @@ namespace ExpressionDemo.ConsoleApp.Filters
     public class ExpressionFilter : IFilter
     {
         private readonly IConfiguration _configuration;
-        private readonly Lazy<Expression<Func<IGeoDataLocation, bool>>> _expression;
-        private readonly Lazy<Func<IGeoDataLocation, bool>> _function;
 
         public ExpressionFilter(IConfiguration configuration)
         {
@@ -20,19 +18,16 @@ namespace ExpressionDemo.ConsoleApp.Filters
                 throw new ArgumentNullException("configuration");
 
             _configuration = configuration;
-
-            _expression = new Lazy<Expression<Func<IGeoDataLocation, bool>>>(BuildExpression);
-            _function = new Lazy<Func<IGeoDataLocation, bool>>(() => GetFilterExpression().Compile());
-        }
-
-        public Expression<Func<IGeoDataLocation, bool>> GetFilterExpression()
-        {
-            return _expression.Value;
         }
 
         public Func<IGeoDataLocation, bool> GetFilterFunction()
         {
-            return _function.Value;
+            return GetFilterExpression().Compile();
+        }
+
+        public Expression<Func<IGeoDataLocation, bool>> GetFilterExpression()
+        {
+            return BuildExpression();
         }
 
         private Expression<Func<IGeoDataLocation, bool>> BuildExpression()
@@ -48,7 +43,8 @@ namespace ExpressionDemo.ConsoleApp.Filters
             if (_configuration.CountryCodes.Any())
                 yield return CountryCodesExpression(location);
 
-            yield return FeaturesExpression(location);
+            if (_configuration.Features.Any())
+                yield return FeaturesExpression(location);
 
             if (_configuration.MinimumPopulationSize.HasValue)
                 yield return PopulationExpression(location);

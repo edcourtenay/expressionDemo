@@ -5,7 +5,7 @@ using ExpressionDemo.Common;
 namespace ExpressionDemo.CsvDataSource
 {
     public abstract class GeoDataSourceBase {
-        protected readonly CsvDataSourceParser _csvDataSourceParser = new CsvDataSourceParser();
+        private readonly CsvDataSourceParser _csvDataSourceParser = new CsvDataSourceParser();
 
         public IEnumerable<IGeoDataLocation> ReadLocationsFromStream(Stream stream)
         {
