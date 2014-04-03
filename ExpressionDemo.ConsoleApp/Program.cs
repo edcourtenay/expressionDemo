@@ -14,7 +14,7 @@ namespace ExpressionDemo.ConsoleApp
             //var kernel = new StandardKernel(new FilterWithGeneratedAssemblyModule());
             //var kernel = new StandardKernel(new FilterWithCompiledFilterModule());
             //var kernel = new StandardKernel(new RpnCalculatorModule());
-
+            
             var application = kernel.Get<IApplication>();
             application.Run();
         }

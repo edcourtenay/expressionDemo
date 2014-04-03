@@ -16,9 +16,9 @@ namespace ExpressionDemo.ConsoleApp.Ninject
             Bind<IConfiguration>().To<EuropeanConfiguration>();
 
             Bind<IFilter>().To<SimpleFilter>();
-            Bind<IFilter>().To<FuncFilter>();
-            Bind<IFilter>().To<ExpressionFuncFilter>();
-            Bind<IFilter>().To<ExpressionFilter>();
+            //Bind<IFilter>().To<FuncFilter>();
+            //Bind<IFilter>().To<ExpressionFuncFilter>();
+            //Bind<IFilter>().To<ExpressionFilter>();
             //Bind<IFilter>()
             //    .To<FilterImplementationBridge>()
             //    .WithConstructorArgument("filterImplementation", Activator.CreateInstance(Type.GetType("TestType, TestAssembly")));

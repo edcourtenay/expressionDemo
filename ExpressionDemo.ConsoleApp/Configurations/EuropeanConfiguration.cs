@@ -24,7 +24,10 @@ namespace ExpressionDemo.ConsoleApp.Configurations
         public override IEnumerable<Tuple<string, string>> Features
         {
             get { return new[] {
-                new Tuple<string, string>("p", "ppl")
+                // a city, town, village, or other agglomeration of buildings where people live and work
+                new Tuple<string, string>("p", "ppl"),
+                // capital of a political entity
+                new Tuple<string, string>("p", "pplc") 
             }; }
         }
 
@@ -38,6 +41,4 @@ namespace ExpressionDemo.ConsoleApp.Configurations
             get { return new DateTime(2012, 1, 1); }
         }
     }
-
-
 }
