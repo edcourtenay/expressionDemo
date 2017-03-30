@@ -11,7 +11,7 @@ namespace ExpressionDemo.ConsoleApp.Filters
         public SimpleFilter(IConfiguration configuration)
         {
             if (configuration == null)
-                throw new ArgumentNullException("configuration");
+                throw new ArgumentNullException(nameof(configuration));
 
             _configuration = configuration;
         }

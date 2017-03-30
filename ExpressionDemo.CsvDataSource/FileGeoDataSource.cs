@@ -12,7 +12,7 @@ namespace ExpressionDemo.CsvDataSource
         public FileGeoDataSource(string fileName)
         {
             if (fileName == null)
-                throw new ArgumentNullException("fileName");
+                throw new ArgumentNullException(nameof(fileName));
 
             _fileName = fileName;
         }

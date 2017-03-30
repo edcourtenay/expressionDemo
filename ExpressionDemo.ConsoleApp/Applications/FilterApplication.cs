@@ -12,8 +12,8 @@ namespace ExpressionDemo.ConsoleApp.Applications
 
         public FilterApplication(IGeoDataSource dataSource, IFilter filter)
         {
-            if (dataSource == null) throw new ArgumentNullException("dataSource");
-            if (filter == null) throw new ArgumentNullException("filter");
+            if (dataSource == null) throw new ArgumentNullException(nameof(dataSource));
+            if (filter == null) throw new ArgumentNullException(nameof(filter));
 
             _dataSource = dataSource;
             _filter = filter;

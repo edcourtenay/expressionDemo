@@ -9,7 +9,7 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         public FilterImplementationBridge(IFilterImplementation filterImplementation)
         {
-            if (filterImplementation == null) throw new ArgumentNullException("filterImplementation");
+            if (filterImplementation == null) throw new ArgumentNullException(nameof(filterImplementation));
 
             _filterImplementation = filterImplementation;
         }

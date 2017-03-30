@@ -58,7 +58,7 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 // ReSharper restore ClassNeverInstantiated.Local
 
         [Test]
-        [TestCaseSource("FiltersAndConfigurations")]
+        [TestCaseSource(nameof(FiltersAndConfigurations))]
         public void AllFiltersShouldExecuteWithAllConfigurations(Type filterType, Type configurationType)
         {
             var kernel = new MoqMockingKernel();

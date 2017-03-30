@@ -14,9 +14,9 @@ namespace ExpressionDemo.ConsoleApp.Applications
         public CountingApplication(IGeoDataSource dataSource, IEnumerable<IFilter> filters)
         {
             if (dataSource == null)
-                throw new ArgumentNullException("dataSource");
+                throw new ArgumentNullException(nameof(dataSource));
             if (filters == null)
-                throw new ArgumentNullException("filters");
+                throw new ArgumentNullException(nameof(filters));
 
             _dataSource = dataSource;
             _filters = filters;
