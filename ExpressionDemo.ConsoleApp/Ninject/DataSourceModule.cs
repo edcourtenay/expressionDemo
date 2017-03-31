@@ -8,7 +8,7 @@ namespace ExpressionDemo.ConsoleApp.Ninject
         public override void Load()
         {
             Bind<IGeoDataSource>().To<EmbeddedGeoDataSource>();
-            // Bind<IGeoDataSource>().To<FileGeoDataSource>().WithConstructorArgument("fileName", @"C:\Data\allCountries.txt");
+            //Bind<IGeoDataSource>().To<FileGeoDataSource>().WithConstructorArgument("fileName", @"allCountries.txt");
         }
     }
 }
