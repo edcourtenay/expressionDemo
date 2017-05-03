@@ -5,20 +5,12 @@ namespace ExpressionDemo.ConsoleApp.Configurations
 {
     public class CapitalCitiesConfiguration : BaseConfiguration
     {
-        public override IEnumerable<Tuple<string, string>> Features
+        public override IEnumerable<Tuple<string, string>> Features => new[]
         {
-            get
-            {
-                return new[]
-                {
-                    new Tuple<string, string>("p", "pplc")
-                };
-            }
-        }
+            new Tuple<string, string>("p", "pplc")
+        };
 
-        //public override IEnumerable<string> CountryCodes
-        //{
-        //    get { return new[] { "gb", "fr", "de" }; }
-        //}
+        public override IEnumerable<string> CountryCodes => new[]
+            { "gb", "fr", "de" };
     }
 }

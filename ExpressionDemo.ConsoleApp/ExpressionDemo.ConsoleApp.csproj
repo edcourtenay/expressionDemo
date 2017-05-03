@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ExpressionDemo.ConsoleApp</RootNamespace>
     <AssemblyName>ExpressionDemo.ConsoleApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,6 +64,7 @@
     <Compile Include="Filters\FuncFilter.cs" />
     <Compile Include="Filters\SimpleFilter.cs" />
     <Compile Include="Ninject\AssemblyGeneratorModule.cs" />
+    <Compile Include="Ninject\ConfigurationModule.cs" />
     <Compile Include="Ninject\CountingApplicationModule.cs" />
     <Compile Include="Ninject\CountingWithGeneratedAssembly.cs" />
     <Compile Include="Ninject\DataSourceModule.cs" />

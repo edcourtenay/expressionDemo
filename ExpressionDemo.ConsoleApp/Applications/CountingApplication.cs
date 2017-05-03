@@ -44,7 +44,9 @@ namespace ExpressionDemo.ConsoleApp.Applications
             stopwatch.Start();
             
             int count = _dataSource.Locations()
-                .Count(filterFunction);
+                .AsParallel()
+                .Where(filterFunction)
+                .Count();
             
             stopwatch.Stop();
 
