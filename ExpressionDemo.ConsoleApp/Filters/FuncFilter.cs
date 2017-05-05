@@ -12,10 +12,8 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         public FuncFilter(IConfiguration configuration)
         {
-            if (configuration == null)
-                throw new ArgumentNullException(nameof(configuration));
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-            _configuration = configuration;
             _funcs = new[] { CountryCodesExpression(),
                 FeaturesExpression(),
                 PopulationExpression(),

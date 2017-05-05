@@ -9,9 +9,7 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         public FilterImplementationBridge(IFilterImplementation filterImplementation)
         {
-            if (filterImplementation == null) throw new ArgumentNullException(nameof(filterImplementation));
-
-            _filterImplementation = filterImplementation;
+            _filterImplementation = filterImplementation ?? throw new ArgumentNullException(nameof(filterImplementation));
         }
 
         public Func<IGeoDataLocation, bool> GetFilterFunction()

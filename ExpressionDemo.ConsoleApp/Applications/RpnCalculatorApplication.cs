@@ -9,19 +9,23 @@ namespace ExpressionDemo.ConsoleApp.Applications
     {
         public void Run()
         {
-            string formula = "2 2 +";
-            
+            //string formula = "2 2 +";
             //string formula = "512 12 4 / root 4 - 2 ^";
             //string formula = "512 1 12 4 / / ^ 4 - 2 ^"; 
-            //string formula = "3 4 5 6 - + *";
+            string formula = "2 3 + 4 * 5 +";
             
             string[] tokens = formula.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
 
-            Func<string, Expression, Expression> unaryMath = (s, x) =>
-                Expression.Call(typeof (Math).GetMethod(s, new[] {typeof (double)}), x);
+            Expression UnaryMath(string s, Expression x) =>
+                Expression.Call(typeof(Math).GetMethod(s, new[] {typeof(double)}), x);
 
-            Func<string, Expression, Expression, Expression> binaryMath = (s, x, y) =>
-                Expression.Call(typeof (Math).GetMethod(s, new[] {typeof (double), typeof (double)}), x, y);
+            Expression BinaryMath(string s, Expression x, Expression y) =>
+                Expression.Call(typeof(Math).GetMethod(s, new[] {typeof(double), typeof(double)}), x, y);
+
+            var constantMap = new Dictionary<string, double>
+            {
+                {"pi", Math.PI}
+            };
 
             var binaryMap = new Dictionary<string, Func<Expression, Expression, Expression>>
             {
@@ -31,20 +35,20 @@ namespace ExpressionDemo.ConsoleApp.Applications
                 {"/", Expression.Divide},
                 {"^", Expression.Power},
                 {"mod", Expression.Modulo},
-                {"log", (x, y) => binaryMath("Log", x, y)},
-                {"min", (x, y) => binaryMath("Min", x, y)},
-                {"max", (x, y) => binaryMath("Max", x, y)},
+                {"log", (x, y) => BinaryMath("Log", x, y)},
+                {"min", (x, y) => BinaryMath("Min", x, y)},
+                {"max", (x, y) => BinaryMath("Max", x, y)},
                 {"root", (x, y) => Expression.Power(x, Expression.Divide(Expression.Constant(1d), y))}
             };
 
             var unaryMap = new Dictionary<string, Func<Expression, Expression>>
             {
-                {"abs", x => unaryMath("Abs", x)},
-                {"exp", x => unaryMath("Exp", x)},
-                {"sin", x => unaryMath("Sin", x)},
-                {"cos", x => unaryMath("Cos", x)},
-                {"tan", x => unaryMath("Tan", x)},
-                {"sqrt", x => unaryMath("Sqrt", x)}
+                {"abs", x => UnaryMath("Abs", x)},
+                {"exp", x => UnaryMath("Exp", x)},
+                {"sin", x => UnaryMath("Sin", x)},
+                {"cos", x => UnaryMath("Cos", x)},
+                {"tan", x => UnaryMath("Tan", x)},
+                {"sqrt", x => UnaryMath("Sqrt", x)}
             };
 
             var stack = new Stack<Expression>();
@@ -55,6 +59,11 @@ namespace ExpressionDemo.ConsoleApp.Applications
                 if (double.TryParse(token, out d))
                 {
                     stack.Push(Expression.Constant(d));
+                    continue;
+                }
+                if (constantMap.ContainsKey(token))
+                {
+                    stack.Push(Expression.Constant(constantMap[token]));
                     continue;
                 }
                 if (binaryMap.ContainsKey(token))
@@ -84,13 +93,38 @@ namespace ExpressionDemo.ConsoleApp.Applications
 
         public void Dump(Expression expression, int depth = 0)
         {
-            Console.WriteLine("{0}{1}", new String(' ', depth * 2), expression.NodeType != ExpressionType.Constant ? expression.NodeType.ToString() : ((ConstantExpression) expression).Value.ToString());
+            Console.WriteLine("{0}{1}", new string(' ', depth * 2),
+                ExpressionLabel(expression));
 
             var binaryExpression = expression as BinaryExpression;
             if (binaryExpression != null)
             {
                 Dump(binaryExpression.Left, depth + 1);
                 Dump(binaryExpression.Right, depth + 1);
+            }
+
+            var methodCallExpression = expression as MethodCallExpression;
+            if (methodCallExpression != null)
+            {
+                foreach (var argument in methodCallExpression.Arguments)
+                {
+                    Dump(argument, depth + 1);
+                }
+            }
+        }
+
+        private static string ExpressionLabel(Expression expression)
+        {
+            switch (expression)
+            {
+                case ConstantExpression expr:
+                    return expr.Value.ToString();
+
+                case MethodCallExpression expr:
+                    return expr.Method.Name;
+
+                default:
+                    return expression.NodeType.ToString();
             }
         }
     }

@@ -13,9 +13,7 @@ namespace ExpressionDemo.ConsoleApp.Applications
 
         public AssemblyGeneratorApplication(ExpressionFilter filter)
         {
-            if (filter == null) throw new ArgumentNullException(nameof(filter));
-
-            _filter = filter;
+            _filter = filter ?? throw new ArgumentNullException(nameof(filter));
         }
 
         public void Run()

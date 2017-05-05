@@ -13,7 +13,7 @@ namespace ExpressionDemo.ConsoleApp
             var kernel = new StandardKernel(
                 new DataSourceModule(),
                 new ConfigurationModule(),
-                //new AssemblyGeneratorModule(),
+                //new AssemblyGeneratorModule()
                 new CountingApplicationModule()
             );
             //var kernel = new StandardKernel(new CountingWithGeneratedAssembly());
