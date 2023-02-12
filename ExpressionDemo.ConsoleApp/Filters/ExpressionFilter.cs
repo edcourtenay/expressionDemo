@@ -14,10 +14,7 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         public ExpressionFilter(IConfiguration configuration)
         {
-            if (configuration == null)
-                throw new ArgumentNullException(nameof(configuration));
-
-            _configuration = configuration;
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public Func<IGeoDataLocation, bool> GetFilterFunction()
@@ -32,7 +29,7 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         private Expression<Func<IGeoDataLocation, bool>> BuildExpression()
         {
-            ParameterExpression location = Expression.Variable(typeof (IGeoDataLocation), "location");
+            var location = Expression.Variable(typeof (IGeoDataLocation), "location");
 
             return Expression.Lambda<Func<IGeoDataLocation, bool>>(ExpressionSections(location).AndAlso(),
                 location);

@@ -28,8 +28,9 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 
         public static IEnumerable<object[]> FiltersAndConfigurations()
         {
-            return from filter in Filters() from configuration in Configurations()
-                   select new object[] {filter, configuration};
+            return Filters()
+                .SelectMany(filter => Configurations(),
+                    (filter, configuration) => new object[] { filter, configuration });
         }
 
 // ReSharper disable ClassNeverInstantiated.Local
@@ -74,7 +75,7 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 
             Action action = () => filter.GetFilterFunction().Invoke(geoDataLocation);
 
-            action.ShouldNotThrow();
+            action.Should().NotThrow();
         }
     }
 }

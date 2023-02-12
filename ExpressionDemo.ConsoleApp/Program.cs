@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ExpressionDemo.Common;
 using ExpressionDemo.ConsoleApp.Ninject;
 using Ninject;
@@ -16,10 +15,10 @@ namespace ExpressionDemo.ConsoleApp
                 //new AssemblyGeneratorModule()
                 new CountingApplicationModule()
             );
-            //var kernel = new StandardKernel(new CountingWithGeneratedAssembly());
-            //var kernel = new StandardKernel(new FilterWithGeneratedAssemblyModule());
-            //var kernel = new StandardKernel(new FilterWithCompiledFilterModule());
-            //var kernel = new StandardKernel(new RpnCalculatorModule());
+            // var kernel = new StandardKernel(new CountingWithGeneratedAssembly());
+            // var kernel = new StandardKernel(new FilterWithGeneratedAssemblyModule());
+            // var kernel = new StandardKernel(new FilterWithCompiledFilterModule());
+            // var kernel = new StandardKernel(new RpnCalculatorModule());
 
             var application = kernel.GetAll<IApplication>();
 
@@ -27,7 +26,7 @@ namespace ExpressionDemo.ConsoleApp
             {
                 var name = a.GetType().Name;
                 Console.WriteLine(name);
-                Console.WriteLine(new String('=', name.Length));
+                Console.WriteLine(new string('=', name.Length));
                 Console.WriteLine();
 
                 a.Run();

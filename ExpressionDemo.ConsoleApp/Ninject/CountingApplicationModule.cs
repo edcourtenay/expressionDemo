@@ -1,5 +1,4 @@
-﻿using System;
-using ExpressionDemo.Common;
+﻿using ExpressionDemo.Common;
 using ExpressionDemo.ConsoleApp.Applications;
 using ExpressionDemo.ConsoleApp.Filters;
 using Ninject.Modules;

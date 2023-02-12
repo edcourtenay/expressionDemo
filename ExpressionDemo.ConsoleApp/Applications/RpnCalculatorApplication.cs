@@ -9,12 +9,12 @@ namespace ExpressionDemo.ConsoleApp.Applications
     {
         public void Run()
         {
-            //string formula = "2 2 +";
-            //string formula = "512 12 4 / root 4 - 2 ^";
-            //string formula = "512 1 12 4 / / ^ 4 - 2 ^"; 
-            string formula = "2 3 + 4 * 5 +";
+            // const string formula = "2 2 +";
+            // const string formula = "512 12 4 / root 4 - 2 ^";
+            // const string formula = "512 1 12 4 / / ^ 4 - 2 ^"; 
+            const string formula = "2 3 + 4 * 5 +";
             
-            string[] tokens = formula.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var tokens = formula.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
 
             Expression UnaryMath(string s, Expression x) =>
                 Expression.Call(typeof(Math).GetMethod(s, new[] {typeof(double)}), x);
@@ -53,10 +53,9 @@ namespace ExpressionDemo.ConsoleApp.Applications
 
             var stack = new Stack<Expression>();
 
-            foreach (string token in tokens)
+            foreach (var token in tokens)
             {
-                double d;
-                if (double.TryParse(token, out d))
+                if (double.TryParse(token, out var d))
                 {
                     stack.Push(Expression.Constant(d));
                     continue;
@@ -68,26 +67,26 @@ namespace ExpressionDemo.ConsoleApp.Applications
                 }
                 if (binaryMap.ContainsKey(token))
                 {
-                    Func<Expression, Expression, Expression> func = binaryMap[token];
-                    Expression y = stack.Pop();
-                    Expression x = stack.Pop();
+                    var func = binaryMap[token];
+                    var y = stack.Pop();
+                    var x = stack.Pop();
                     stack.Push(func(x, y));
                     continue;
                 }
                 if (unaryMap.ContainsKey(token))
                 {
-                    Func<Expression, Expression> func = unaryMap[token];
+                    var func = unaryMap[token];
                     stack.Push(func(stack.Pop()));
                 }
             }
 
-            Expression expression = stack.Pop();
+            var expression = stack.Pop();
 
             Console.WriteLine(expression.ToString());
 
             Dump(expression);
             
-            Expression<Func<double>> lambda = Expression.Lambda<Func<double>>(expression);
+            var lambda = Expression.Lambda<Func<double>>(expression);
             Console.WriteLine("\n= {0}", lambda.Compile().Invoke());
         }
 
@@ -96,19 +95,20 @@ namespace ExpressionDemo.ConsoleApp.Applications
             Console.WriteLine("{0}{1}", new string(' ', depth * 2),
                 ExpressionLabel(expression));
 
-            var binaryExpression = expression as BinaryExpression;
-            if (binaryExpression != null)
+            switch (expression)
             {
-                Dump(binaryExpression.Left, depth + 1);
-                Dump(binaryExpression.Right, depth + 1);
-            }
-
-            var methodCallExpression = expression as MethodCallExpression;
-            if (methodCallExpression != null)
-            {
-                foreach (var argument in methodCallExpression.Arguments)
+                case BinaryExpression binaryExpression:
+                    Dump(binaryExpression.Left, depth + 1);
+                    Dump(binaryExpression.Right, depth + 1);
+                    break;
+                case MethodCallExpression methodCallExpression:
                 {
-                    Dump(argument, depth + 1);
+                    foreach (var argument in methodCallExpression.Arguments)
+                    {
+                        Dump(argument, depth + 1);
+                    }
+
+                    break;
                 }
             }
         }

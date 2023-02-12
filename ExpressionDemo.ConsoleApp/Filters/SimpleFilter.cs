@@ -23,22 +23,15 @@ namespace ExpressionDemo.ConsoleApp.Filters
         {
             if (!_configuration.CountryCodes.Any())
                 return true;
-            
-            foreach (string countryCode in _configuration.CountryCodes) {
-                if (location.CountryCode.Equals(countryCode, StringComparison.InvariantCultureIgnoreCase))
-                    return true;
-            }
-            return false;
+
+            return _configuration.CountryCodes
+                .Any(countryCode => location.CountryCode.Equals(countryCode, StringComparison.InvariantCultureIgnoreCase));
         }
 
         private bool FilterByClassification(IGeoDataLocation location)
         {
-            foreach (var feature in _configuration.Features) {
-                if (string.Equals(feature.Item1, location.FeatureClass, StringComparison.InvariantCultureIgnoreCase) &&
-                    string.Equals(feature.Item2, location.FeatureCode, StringComparison.InvariantCultureIgnoreCase))
-                    return true;
-            }
-            return false;
+            return _configuration.Features
+                .Any(feature => string.Equals(feature.Item1, location.FeatureClass, StringComparison.InvariantCultureIgnoreCase) && string.Equals(feature.Item2, location.FeatureCode, StringComparison.InvariantCultureIgnoreCase));
         }
 
         private bool FilterByPopulation(IGeoDataLocation location)

@@ -13,10 +13,7 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         public ExpressionFuncFilter(IConfiguration configuration)
         {
-            if (configuration == null)
-                throw new ArgumentNullException(nameof(configuration));
-
-            _configuration = configuration;
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
         }
 
         public Func<IGeoDataLocation, bool> GetFilterFunction()
@@ -57,10 +54,10 @@ namespace ExpressionDemo.ConsoleApp.Filters
         private static Expression<Func<IGeoDataLocation, bool>> FeatureExpression(Tuple<string, string> tuple)
         {
             return location =>
-                (string.Equals(tuple.Item1, location.FeatureClass,
+                string.Equals(tuple.Item1, location.FeatureClass,
                     StringComparison.InvariantCultureIgnoreCase) &&
-                    string.Equals(tuple.Item2, location.FeatureCode,
-                        StringComparison.InvariantCultureIgnoreCase));
+                string.Equals(tuple.Item2, location.FeatureCode,
+                    StringComparison.InvariantCultureIgnoreCase);
         }
 
         private Expression<Func<IGeoDataLocation, bool>> PopulationExpression()

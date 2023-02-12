@@ -14,7 +14,7 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
         [TestCase(false, 1)]
         public void OrElseShouldCreateTreeThatShortCircuitEvaluatesInTheCorrectOrder(bool firstReturn, int expectedInvocationCount)
         {
-            Guid guid = Guid.NewGuid();
+            var guid = Guid.NewGuid();
             var block = BlockExpression(true, guid);
 
             var expression = new Expression[] {
@@ -31,7 +31,7 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 
         private BlockExpression BlockExpression(bool value, Guid guid)
         {
-            LabelTarget returnTarget = Expression.Label(typeof (bool));
+            var returnTarget = Expression.Label(typeof (bool));
 
             return
                 Expression.Block(
@@ -42,7 +42,7 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 
         public static class InvocationCounter
         {
-            private static readonly ConcurrentDictionary<Guid, InnerCounter> _dict =
+            private static readonly ConcurrentDictionary<Guid, InnerCounter> Dict =
                 new ConcurrentDictionary<Guid, InnerCounter>();
 
             public static int Count(Guid guid)
@@ -62,7 +62,7 @@ namespace ExpressionDemo.ConsoleApp.Tests.Unit
 
             private static InnerCounter GetInvocationCounter(Guid guid)
             {
-                return _dict.GetOrAdd(guid, _ => new InnerCounter());
+                return Dict.GetOrAdd(guid, _ => new InnerCounter());
             }
 
             public class InnerCounter

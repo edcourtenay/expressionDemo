@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using ExpressionDemo.Common;
 
@@ -27,9 +26,9 @@ namespace ExpressionDemo.ConsoleApp.Filters
 
         private Func<IGeoDataLocation, bool> CountryCodesExpression()
         {
-            IEnumerable<string> countryCodes = _configuration.CountryCodes;
+            var countryCodes = _configuration.CountryCodes;
 
-            string[] enumerable = countryCodes as string[] ?? countryCodes.ToArray();
+            var enumerable = countryCodes as string[] ?? countryCodes.ToArray();
 
             if (enumerable.Any())
                 return location => enumerable
@@ -48,10 +47,10 @@ namespace ExpressionDemo.ConsoleApp.Filters
         private static Func<IGeoDataLocation, bool> FeatureExpression(Tuple<string, string> tuple)
         {
             return location =>
-                (string.Equals(tuple.Item1, location.FeatureClass,
+                string.Equals(tuple.Item1, location.FeatureClass,
                     StringComparison.InvariantCultureIgnoreCase) &&
-                    string.Equals(tuple.Item2, location.FeatureCode,
-                        StringComparison.InvariantCultureIgnoreCase));
+                string.Equals(tuple.Item2, location.FeatureCode,
+                    StringComparison.InvariantCultureIgnoreCase);
         }
 
         private Func<IGeoDataLocation, bool> PopulationExpression()

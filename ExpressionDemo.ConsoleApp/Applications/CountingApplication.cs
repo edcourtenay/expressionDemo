@@ -13,13 +13,8 @@ namespace ExpressionDemo.ConsoleApp.Applications
 
         public CountingApplication(IGeoDataSource dataSource, IEnumerable<IFilter> filters)
         {
-            if (dataSource == null)
-                throw new ArgumentNullException(nameof(dataSource));
-            if (filters == null)
-                throw new ArgumentNullException(nameof(filters));
-
-            _dataSource = dataSource;
-            _filters = filters;
+            _dataSource = dataSource ?? throw new ArgumentNullException(nameof(dataSource));
+            _filters = filters ?? throw new ArgumentNullException(nameof(filters));
         }
 
         public void Run()
@@ -43,7 +38,7 @@ namespace ExpressionDemo.ConsoleApp.Applications
 
             stopwatch.Start();
             
-            int count = _dataSource.Locations()
+            var count = _dataSource.Locations()
                 .AsParallel()
                 .Where(filterFunction)
                 .Count();

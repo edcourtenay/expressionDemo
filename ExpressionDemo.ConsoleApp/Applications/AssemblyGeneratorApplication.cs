@@ -8,7 +8,7 @@ namespace ExpressionDemo.ConsoleApp.Applications
 {
     internal class AssemblyGeneratorApplication : IApplication
     {
-        private const string ASSEMBLY_FILENAME = "TestAssembly.dll";
+        private const string AssemblyFilename = "TestAssembly.dll";
         private readonly ExpressionFilter _filter;
 
         public AssemblyGeneratorApplication(ExpressionFilter filter)
@@ -20,13 +20,13 @@ namespace ExpressionDemo.ConsoleApp.Applications
         {
             var expr = _filter.GetFilterExpression();
 
-            AssemblyBuilder assembly =
+            var assembly =
                 AppDomain.CurrentDomain.DefineDynamicAssembly(new AssemblyName("TestAssembly"),
                     AssemblyBuilderAccess.RunAndSave);
-            ModuleBuilder mod = assembly.DefineDynamicModule("TestModule", ASSEMBLY_FILENAME, true);
-            TypeBuilder type = mod.DefineType("TestType", TypeAttributes.Public, typeof(object), new []{typeof(IFilterImplementation)});
+            var mod = assembly.DefineDynamicModule("TestModule", AssemblyFilename, true);
+            var type = mod.DefineType("TestType", TypeAttributes.Public, typeof(object), new []{typeof(IFilterImplementation)});
             
-            MethodBuilder staticMethod = type.DefineMethod("FilterStatic", MethodAttributes.Public | MethodAttributes.Static,
+            var staticMethod = type.DefineMethod("FilterStatic", MethodAttributes.Public | MethodAttributes.Static,
                 typeof(bool), new[] { typeof(IGeoDataLocation) });
 
             expr.CompileToMethod(staticMethod);
@@ -38,15 +38,15 @@ namespace ExpressionDemo.ConsoleApp.Applications
         private static void SaveAssembly(TypeBuilder type, AssemblyBuilder assembly)
         {
             var dt = type.CreateType();
-            assembly.Save(ASSEMBLY_FILENAME);
+            assembly.Save(AssemblyFilename);
         }
 
         private static void GenerateInterfaceWrapper(TypeBuilder type, MethodBuilder staticMethod)
         {
-            MethodBuilder method = type.DefineMethod("Filter", MethodAttributes.Public | MethodAttributes.Virtual,
+            var method = type.DefineMethod("Filter", MethodAttributes.Public | MethodAttributes.Virtual,
                 typeof (bool), new[] {typeof (IGeoDataLocation)});
 
-            ILGenerator generator = method.GetILGenerator();
+            var generator = method.GetILGenerator();
 
             generator.Emit(OpCodes.Nop);
             generator.Emit(OpCodes.Ldarg_1);

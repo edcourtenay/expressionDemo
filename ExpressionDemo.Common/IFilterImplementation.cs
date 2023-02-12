@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-
 namespace ExpressionDemo.Common
 {
     public interface IFilterImplementation
